@@ -1,0 +1,39 @@
+name: Check various methods to run python with dependencies on 22.04
+on:
+  workflow_dispatch:
+
+jobs:
+  ubuntu-2204-bash:
+    runs-on: ubuntu-22.04
+    continue-on-error: true
+    steps:
+    - uses: actions/checkout@v4
+    - name: versions and install locations
+      run: |
+        which python
+        python --version
+        which pip
+        pip --version
+    - name: Install dependencies via bash
+      run: |
+        pip install -r ./requirements.txt
+    - name: Run Python code
+      run: |
+        python test-script.py
+  ubuntu-2404-bash:
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    steps:
+    - uses: actions/checkout@v4
+    - name: versions and install locations
+      run: |
+        which python
+        python --version
+        which pip
+        pip --version
+    - name: Install dependencies via bash
+      run: |
+        pip install -r ./requirements.txt
+    - name: Run Python code
+      run: |
+        python test-script.py
